@@ -1,2 +1,2 @@
-# reddit_scraper_utils
+# Reddit Scraper Utils
 Utilities for scraping Reddit.
