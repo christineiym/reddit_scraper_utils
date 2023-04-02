@@ -1,4 +1,7 @@
-"""A supplementary scraper for Reddit comments, made in a hurry."""
+"""A supplementary scraper for Reddit comments, made in a hurry
+
+Only for comments
+"""
 
 import httplib2
 from bs4 import BeautifulSoup, SoupStrainer
@@ -8,7 +11,9 @@ import pandas as pd
 
 http = httplib2.Http()
 APPEND_MODE = "a"
+SUBREDDIT_NAME = "UNC"
 
+header_written = False
 
 def main():
     keywords = pd.read_csv("input.csv")
@@ -20,10 +25,10 @@ def main():
     while i < len(queries):
         data = []
         query_string = queries[i].replace(" ", "%20")
-        status, response = http.request("https://www.reddit.com/r/UNC/search/?q=" + query_string + 
+        status, response = http.request("https://www.reddit.com/r/" + SUBREDDIT_NAME + "/search/?q=" + query_string + 
             "&restrict_sr=1&sr_nsfw=&include_over_18=1&type=comment")
         soup = BeautifulSoup(response, features="html.parser")
-        relevant_soup = soup.find_all("div", {"data-testid" : "search_comment"})
+        relevant_soup = soup.find_all("div", {"data-testid" : "search_comment_container"})
 
         for item in relevant_soup:
             item_info: dict[str, str] = {}
@@ -43,12 +48,18 @@ def main():
             
             item_info["comment_text"] = item.find("div", {"data-testid": "comment"}).get_text()
             item_info["upvotes"] = item.find("span", {"class": "_vaFo96phV6L5Hltvwcox"}).get_text()
+            item_info["link"] = "https://www.reddit.com" + item.find("a", {"data-testid": "go_to_thread_link"}).get("href")
+            
             data.append(item_info)
         
         with open("reddit_comments_mental_health.csv", APPEND_MODE, newline='') as output_file:
             if len(data) > 0:
                 dict_writer = csv.DictWriter(output_file, data[0].keys())
-                dict_writer.writeheader()
+
+                global header_written
+                if not header_written:
+                    dict_writer.writeheader()
+                    header_written = True
                 dict_writer.writerows(data)
         
         print("Done with query: " + queries[i])
