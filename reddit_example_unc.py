@@ -3,6 +3,7 @@
 import httplib2
 from bs4 import BeautifulSoup, SoupStrainer
 import csv
+import pandas as pd
 
 
 http = httplib2.Http()
@@ -10,8 +11,11 @@ APPEND_MODE = "a"
 
 
 def main():
-    queries = ["ula", "uta", "undergraduate teaching assistant", "undergraduate learning assistant", "peer mentor"]
-    
+    keywords = pd.read_csv("input.csv")
+    queries_raw = list(keywords["keywords"])
+    queries = [keyword.lower() for keyword in queries_raw]
+    print(queries)
+
     i = 0
     while i < len(queries):
         data = []
@@ -41,7 +45,7 @@ def main():
             item_info["upvotes"] = item.find("span", {"class": "_vaFo96phV6L5Hltvwcox"}).get_text()
             data.append(item_info)
         
-        with open("reddit_comments.csv", APPEND_MODE, newline='') as output_file:
+        with open("reddit_comments_mental_health.csv", APPEND_MODE, newline='') as output_file:
             if len(data) > 0:
                 dict_writer = csv.DictWriter(output_file, data[0].keys())
                 dict_writer.writeheader()
