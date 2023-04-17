@@ -16,7 +16,7 @@ SUBREDDIT_NAME = "UNC"
 header_written = False
 
 def main():
-    keywords = pd.read_csv("input.csv")
+    keywords = pd.read_csv("input_disability.csv")
     queries_raw = list(keywords["keywords"])
     queries = [keyword.lower() for keyword in queries_raw]
     print(queries)
@@ -52,7 +52,7 @@ def main():
             
             data.append(item_info)
         
-        with open("reddit_comments_mental_health.csv", APPEND_MODE, newline='') as output_file:
+        with open("reddit_comments_disability.csv", APPEND_MODE, newline='') as output_file:
             if len(data) > 0:
                 dict_writer = csv.DictWriter(output_file, data[0].keys())
 
