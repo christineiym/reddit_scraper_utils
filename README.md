@@ -1,4 +1,4 @@
 # Scraper Utils
 Utilities for scraping various websites.
 
-Note: I was in a hurry, so documentation may be sparse, and resources/examples may have bugs.
+Note: Reddit has been changing their html structure, so commented out portions don't work, and Ineed to trim the extra paragraph spaces.

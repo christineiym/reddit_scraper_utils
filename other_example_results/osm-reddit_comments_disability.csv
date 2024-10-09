@@ -1,0 +1,1674 @@
+query,user,comment_text
+disability,,"
+
+    Start the browser in safe mode?
+  
+    Disable extensions and enable one-by-one until you find it?
+  
+    Something like this? https://stackoverflow.com/questions/22729686/set-custom-protocol-handler-in-firefox
+
+"
+disability,,"
+
+    Aah! Now I get it. You're not solving the shortest path problem but rather a ""find the best round trip"" problem. I guess this problem is a order of magnitude harder to solve as there's a way bigger number of options and a greedy algorithm like Dijkstra won't help you because your problem space isn't a matroid. In this case my naive approach with my background in optimization / operations research would be (as always) an iterated local search on the graph.
+  
+    I guess if you already have something that works for you, there's no need to switch to OSR. But if you are interested, you can email me on LinkedIn or via mail and we'll have a chat.
+  
+    For R-Tree I can recommend looking at https://github.com/tidwall/rtree.cWe're working on bringing it into https://github.com/felixguendling/cista to skip building the tree at startup (just load a binary buffer into memory and start using it, like we do with everything else (public transport timetable, geocoding for lookup, reverse-geocoding, etc.).
+  
+    Regarding indoor routing: it's nothing special, like always using ways tagged with `highway`. So currently, we don't have area routing from room area to room area. The main difference is that the routing tracks level changes correctly and doesn't ""fall through the ceiling"" if nodes are used on multiple levels. Level changes are allowed at stairs, ramps, elevators and entries/exits.
+  
+    Ways are not aggregated. The idea behind this was that this would enable us to implement a real-time update functionality with minutely OpenStreetMap changesets by keeping nodes and ways exactly as they are in OSM (no aggregation). This is not implemented yet but it should be possible (simply add a bit vector to disable ways and add a new one + update the list of ways at a node). But it's not a priority for now. Import takes ~40min for the planet file on my hardware. So hourly updates could be implemented already now. Not sure if minutely updates are even needed. So an option would be to speedup the search by aggregating ways. However, for the current main use case (one to many and many to one within ~1h walking/driving distance), query times are ok.
+  
+    If you're interested to integrate public transport as an option to get somewhere or for the way back, MOTIS could be a good option :-)
+  
+"
+disability,,"
+
+disability=none? I think you mean wheelchair=no.
+  
+"
+disability,,"
+
+    I'd put just a sightseeing POI. With 'disability=none'.
+  
+"
+disability,,"
+
+    Numerous government & local government bodies make use of OSM for multi-modal routing (often using the router developed by Portland TriMet, OpenTripPlanner). Mainly OSM will be used for the foot and bicycle components of routing. Traveline, a national agency grouping travel providers, in the UK have used OSM for multimodal routing since 2013, but with their own routing engine.  In nearly all these cases transport routes & stop positions come from internal data not from OSM. In most cases they will do some mapping when necessary, but often the data already in OSM is the best available. In Traveline's case it was often new infrastructure which needed following up : bus stations, or changed routes, for example.
+  
+    Transilien the rail service for the Paris region have used OSM for mapping disability access to stations. The French national railway used OSM for improving predictions of train service times (unrecorded talk at SotM-19). The French SotM is well-attended by representatives from all levels of government with many examples of how the data is used at each conference.
+  
+    Numerous councils in Britain will use some OSM data. Examples come to mind are : Birmingham City Council which collected some details on traffic infrastructure via OSM; Surrey Heath, who's GIS officer James Rutter was an early OSM advocate, mapped buildings in their district allow reduction in fees for cartographic products. Many others will review OSM data to detect deficiencies in their own.
+  
+    At present I think few, if any, have gone fully for OSM. They often already have good GIS data from a range of sources collated over decades, but furthermore I think there are still sensible reasons related to various risks not to rely entirely on OSM.
+  
+"
+disability,,"
+
+    I'm a bit surprised this is seen so negatively. This was not the response of long-time Indian OpenStreetMappers Arun Ganesh (planemad) & Sajjad Anwar (geohacker), who have both been positive about the development. As some of the links say, geospatial data has historically been seen as a military & security asset (and therefore to some extent secret) and not a tool for enabling both commercial and noncommercial (e.g., conservation, disability access) activities to the benefit of the whole population.
+  
+"
+disability,,"
+
+    What do you mean by trackers? If this is a concern I'm happy to build in options that disable such things.
+  
+    If you're curious, at this time, I don't believe I currently even have any cookies set up for any settings (I had like one in the past for location storage, but disabled long ago)...
+  
+    Beyond this, I ask your browser for your location, if the request is denied (often automatically without an actual prompt from a user) I make a call out to https://ipinfo.io/ to try and find your general location and blip the map there, setting the system to metric if you're outside of the US, and imperial otherwise.
+  
+    I have a single Google Analytics property, just one call to www.googletagmanager.com that sits on the main page, it's not tied into any buttons or anything.
+  
+    I use Cloudflare for some caching, and to help get it through my residential internet with a static IP?
+  
+    I guess you can be skeptical because it's a free project, but I assure you I'm not tracking anything, selling any sort of information, and purely build and disseminate this website because I have the free time to do so, nothing more.
+  
+"
+disability,,"
+
+    Yes, it's possible via QGIS.
+  
+https://www.maptiler.com/qgis-plugin/
+
+    You can edit the layer styling in QGIS to disable labels and export the result as SVG.
+  
+"
+disability,,"
+
+    That's a pretty impressive Github, and it definitely has powerful implications, so hats off to you.
+  
+    However, while you do have some points, I do not whole heartedly agree with all of them.
+  
+    Point A. Strava's engineering capability. I lost faith in a lot of their ability when they disabled power meter/cadence sensor pairing with their phone app due to some type of compatibility issues. If RideWithGPS can do it, why not them? Additionally, I already have 2 half built Android apps that support this capability.
+  
+    Strava is only now adding darkmode and looking into the capability of using AI to flag segments? I could have created a detection AI capable of this in a couple of weeks, perhaps less, especially with their dataset.
+  
+    Their live segments almost never seem to work for me, they created Strava for dogs... they created a laurel system for completing the same commute more than someone else?
+  
+    Their power estimation is abysmal, here's a recent record breaking ride of mine into a 16mph headwind and they assumed an average of 191 watts? https://www.strava.com/activities/11613688408
+
+    I built an entire physics calculator that accounts for everything under the sun, even the density of air at different altitudes: https://sherpa-map.com/cycling-route-calculator.html I'll probably build my own power estimator based off of this at some point.
+  
+    In my mind, they pioneered cat 6 racing on roads through intersections to try to beat someone who had a 20mph tailwind.
+  
+    Then they made it social.
+  
+    Then they started buying other companies like Fatmap.
+  
+    I don't believe anything of what they've done is particularly challenging, even segment wise, I've been considering creating my own, but programmatically generating ""safe"" segments, adding wind scores, making it so people can create teams, take over regions, etc.
+  
+    The only kudos I give to Strava is making their heatmap available to OSM developers to help define mtb trails and such.
+  
+    You're inventing something new, free, and open to help everyone, that's a fantastic project, but unless I missed some groundbreaking framework, service, or system that Strava managed to contribute to the world I'm at a bit of a loss as to their sheer programming prowess.
+  
+    I admit though, I do pay for it, and perhaps that's causing some bias, because I painfully handed over that $80...
+  
+    On to Komoot:I've looked at their premium maps, it's the same thing with the bike trails/running trails/hiking trails.
+  
+    And say what you want, but I personally find it reprehensible that their only free option is so basic, for a company that rakes in soo much cash. It costs practically nothing to host or generate these maps, especially as vectors, at least they appear to contribute to the Maplibre project.
+  
+    But hey, they have to pay for their ridiculous advertising budget somehow, as far as I can tell, they took RideWithGPS's idea, made it more community and bike packing focused, charged as much as they could then spent as much as they could on ads, everywhere.
+
+Sorry if that this seems to have turned into a bit of a rant, I get that many of their decisions are to create a stable business model and generate revenue, but the industry hasn't been doing great lately, look at Trailforks, they just made everyone's contributed photos/videos/etc. premium! Don't get me wrong, if I came up with something that I think is worth a subscription I'd put one together, but all of this nickel and diming for nothing new.
+  
+    To be clear, I got into cycling back in 2017, from then to now, I haven't seen a new big app, service, or system, appear anywhere in the space. Maybe something popped up that I missed, but, other than your innovation, what innovation have you spotted from these companies that figured out how to turn a profit?
+  
+"
+disability,,"
+
+    Thanks! I never thought it was under the share option at all.That said the problem with OSM is not allowing me to disable the labels unlike the Maptiler site (which is actually based on OSM).
+  
+    Just wondering if there is also a hidden option to hide labels in OSM?
+  
+"
+disability,,"
+
+    Obviously a bit biased :) and also not part of QGIS, but I would recommend GraphHopper were you can customize the cost function even per request without any deep programming knowledge with our so called ""custom models"". See here for some examples. (And if this is not sufficient then you can also change the source code, of course.)
+  
+    Using the in-built elevation data you can e.g. reduce the speed based on the slope. If you follow this link to GraphHopper Maps you can click on the gear button (in the top left corner) to view/enable/disable the custom model and see how it changes the route and associated speed and distance values.
+  
+"
+disability,,"
+
+    Not true. They make a few custom buildings, yes, but they also render building:part tags as well as colour, material, and even roof shapes. You can see which is which by going into the graphic options and disabling ""F4 specific buildings."" Anything remaining comes from OSM.
+  
+Here's a church I put together using LIDAR data to obtain height values. And here's a similar angle of it in 3D Google Maps for comparison.
+  
+"
+disability,,"
+
+    Maxar was disabled for all of OSM in July. Neither iD, nor JOSM or StreetComplete can access it.
+  
+"
+disability,,"
+
+    If you're working with addresses and buildings in United States, RapID editor is great.  You can have building outlines and also addresses as layers you can chose and add and use in editing the maps.   They have the whole NAD (National Address Dataset) available as an overlay you can use.  They also have some county provided address datasets available to use for editing.
+  
+    You can really fly through a neighborhood adding buildings and addresses with this.
+  
+
+https://rapideditor.org/rapid#background=Bing&datasets=msBuildings,e75b56f13b404d7d8b47ef8be1c619ec&disable_features=boundaries&map=18.03/35.52136/-108.73626
+
+"
+disability,,"
+
+    I map places disabled people will find hard to access or use. Pedestrian crossing with no ramps for wheelchairs to get back on to the footpath. Footpaths that finish at a corner with no way a wheelchair can get down on to the road to use the crossing. Audible tones at pedestrian crossings so the deaf can hear when the lights have changed…. That type of thing
+  
+"
+disability,,"
+
+    Looks like we had this option turned on: ""Get recommended to individual redditors: Let Reddit recommend your community to people who have similar interests"".
+  
+    I have disabled it now.
+  
+"
+disability,,"
+
+    I messed around with StreetComplete a bit, but only started using it frequently when I disabled a large number of quests. It was just too cluttered with things I'm not interested in. Adding building numbers is very useful though, and the app does a great job of making adding them easy. It's my go to app for this task now.
+  
+"
+disability,,"
+
+    I may just be nitpicking, but if you look at houses here a lot are at different angles relative to the houses or are very oversimplified. RapiD showing misaligned houses
+
+"
+disability,,"
+
+    Well that and a footway doesn't allow vehicles at all (normally due to width), whereas a pedestrian street may still allow authorised vehicles (e.g. disabled, deliveries, maintenance) at certain times.
+  
+"
+disability,,"
+
+    I believe editing on the mobile website is disabled, you could look for an option in your browser that says something like ""request desktop site"", but this makes everything very small on a mobile screen. You're probably better off downloading an app like Street Complete for simple edits or Vespucci for more in depth edits.
+  
+"
+disability,,"
+
+    Open this link and use it in your browser. Of course you have to be an OSM editor, so I guess you have login name and password for OSM.
+  
+    There is a little tutorial inside.
+  
+https://mapwith.ai/rapid#background=Bing&datasets=fbRoads,msBuildings&disable_features=boundaries&map=2.00/0.0/0.0
+
+"
+disability,,"
+
+    Whenever I add a parking lot and see a disabled parking space I try to add them, even if I don't add the total spaces in the lot. I think Street Complete also has a question around this, which is likely helping. Don't know if there's any stats about how much Street Complete is helping the map. Would love to see usage statistics like number of edits or which regions benefit most from it.
+  
+"
+disability,,"
+
+    The disabled parking spots are tagged
+  
+"
+handicap,,"
+
+    oh wow! that sounds like a crazy cool idea. It would be wonderful to have the testuin, goshuin, eki stamp etc. collectors united in one place - centered around OSM ideally to share the data.
+  
+    If you're interested in keeping contact please DM - I will take a look at slack and the community - not speaking japanese without tools is my handicap though. 私は最善を尽くします
+  
+"
+handicap,,"
+
+    I did my local club like this too... I didn't overthink it. I've played there enough.  I just drew straight lines to the middle of the fairway without really considering drive distance or distance to get to Green in Regulation etc. OSM is limited as it doesn't differentiate between tee boxes or show par/handicap for men/women etc.
+  
+    It felt a bit strange entering the men's handicaps only and ignoring the difference for women's.  If anyone knows how to fix that, I'll happily go ahead and do that.
+  
+    Here's my course: https://www.openstreetmap.org/#map=17/49.86039/-119.61158
+
+    And another one I added these things to: https://www.openstreetmap.org/#map=18/49.83490/-119.60713
+
+"
+handicap,,"
+
+    Super quick to add all the extra information to POIs, fast to delete old POIs and super quick to add detailed POIs to a map.  You can easily walk down a street and add every store and POI in an area or detailed mapping, with Opening Hours, Handicap accessibility, contact information,credit card information ECT.  Street complete is far limited and not an editor rather a serious of questions.
+  
+"
+handicap,,"
+
+    Yeah, I've always thought this fails on a number of grounds: on-the-ground rule; golfers with different handicaps will play holes differently, and some courses deliberately make this a feature; different tee boxes; flag moves around; sexism (lines usually represent what a male golfer playing off a scratch handicap would hope).
+  
+    People like it because it renders, and it corresponds to the kind of diagram clubs themselves put out and diagrams of courses used for major golf tournaments published in the press. Here's something I wrote quite a while back & never posted, which provides more detail:
+  
+
+    Shotlines are often seen in plans of golf holes newspaper articles around the time of major championships. However, they aren't just an idealised aggregate of what every golfer wants to do, they are just an artists notion. They don't exist, and they are not some abstraction of something which does exist like a road centreline. And why, because every golfer is different, every day on a golf course is different, and the location of the flag is different.
+  
+    This promotional video  shows a famous hole, Battery at Machrihanish, the so-called ""Drive across the Atlantic"". In another video people are teeing off from the white and yellow tees, which provide an intimidating drive across either a wet sandy beach or, when the tide is in, the ocean. However, the red and 'ladies' tees offer a much less imposing spectacle because they are further from the shore. Even from the competition tees one can play safe and instead of driving towards the green, play a shorter ball onto the fairway. So we have four tees and at least two basic strategies for hitting from the tee, without taking any account of the golfers ability. In competition a 28 handicap golfer can afford to be much more cautious than a scratch golfer at this par 4 (par 5 from red tees). Roughly the hole can have a par after handicap of from 4 to 7, so there are 8 basic choices off the tee, multiplied by 3 for the different effective pars. Some of these 24 are probably indistinguishable, but even so it shows that the notion of a single shot-line does not make sense. By the way, this only reflects the first half of the hole!
+  
+    In fact it is a common practice of course designers to try and create some kind of risk-reward features for holes when practicable. These include introducing dog legs which allow strong hitters to try and reach the green over rough ground, or introducing hazards (bunkers, water features) at distances which penalise the better golfers. On courses with a lot of water some holes have distinct ways of approaching the green: tailored to different levels of skill.
+  
+
+"
+handicap,,"
+
+    The wiki says that you can can split handycap by gender: https://wiki.openstreetmap.org/wiki/Key:handicap
+
+"
+handicap,,"
+
+
+    OSM is limited as it doesn't differentiate between tee boxes or show par/handicap for men/women etc.
+  
+
+https://wiki.openstreetmap.org/wiki/Any_tags_you_like
+
+"
+handicap,,"
+
+    I did it as so.
+  
+    amenity = parking_space
+  
+    capacity = 1 (this is the default in id so i just left it.)
+  
+    parking_space = normal (you should change this what the parking is meant for. e.g handicap, motorcycle, charging etc. id has a drop down with all of them.)
+  
+"
+disabled,,"
+
+    What do you mean by trackers? If this is a concern I'm happy to build in options that disable such things.
+  
+    If you're curious, at this time, I don't believe I currently even have any cookies set up for any settings (I had like one in the past for location storage, but disabled long ago)...
+  
+    Beyond this, I ask your browser for your location, if the request is denied (often automatically without an actual prompt from a user) I make a call out to https://ipinfo.io/ to try and find your general location and blip the map there, setting the system to metric if you're outside of the US, and imperial otherwise.
+  
+    I have a single Google Analytics property, just one call to www.googletagmanager.com that sits on the main page, it's not tied into any buttons or anything.
+  
+    I use Cloudflare for some caching, and to help get it through my residential internet with a static IP?
+  
+    I guess you can be skeptical because it's a free project, but I assure you I'm not tracking anything, selling any sort of information, and purely build and disseminate this website because I have the free time to do so, nothing more.
+  
+"
+disabled,,"
+
+    That's a pretty impressive Github, and it definitely has powerful implications, so hats off to you.
+  
+    However, while you do have some points, I do not whole heartedly agree with all of them.
+  
+    Point A. Strava's engineering capability. I lost faith in a lot of their ability when they disabled power meter/cadence sensor pairing with their phone app due to some type of compatibility issues. If RideWithGPS can do it, why not them? Additionally, I already have 2 half built Android apps that support this capability.
+  
+    Strava is only now adding darkmode and looking into the capability of using AI to flag segments? I could have created a detection AI capable of this in a couple of weeks, perhaps less, especially with their dataset.
+  
+    Their live segments almost never seem to work for me, they created Strava for dogs... they created a laurel system for completing the same commute more than someone else?
+  
+    Their power estimation is abysmal, here's a recent record breaking ride of mine into a 16mph headwind and they assumed an average of 191 watts? https://www.strava.com/activities/11613688408
+
+    I built an entire physics calculator that accounts for everything under the sun, even the density of air at different altitudes: https://sherpa-map.com/cycling-route-calculator.html I'll probably build my own power estimator based off of this at some point.
+  
+    In my mind, they pioneered cat 6 racing on roads through intersections to try to beat someone who had a 20mph tailwind.
+  
+    Then they made it social.
+  
+    Then they started buying other companies like Fatmap.
+  
+    I don't believe anything of what they've done is particularly challenging, even segment wise, I've been considering creating my own, but programmatically generating ""safe"" segments, adding wind scores, making it so people can create teams, take over regions, etc.
+  
+    The only kudos I give to Strava is making their heatmap available to OSM developers to help define mtb trails and such.
+  
+    You're inventing something new, free, and open to help everyone, that's a fantastic project, but unless I missed some groundbreaking framework, service, or system that Strava managed to contribute to the world I'm at a bit of a loss as to their sheer programming prowess.
+  
+    I admit though, I do pay for it, and perhaps that's causing some bias, because I painfully handed over that $80...
+  
+    On to Komoot:I've looked at their premium maps, it's the same thing with the bike trails/running trails/hiking trails.
+  
+    And say what you want, but I personally find it reprehensible that their only free option is so basic, for a company that rakes in soo much cash. It costs practically nothing to host or generate these maps, especially as vectors, at least they appear to contribute to the Maplibre project.
+  
+    But hey, they have to pay for their ridiculous advertising budget somehow, as far as I can tell, they took RideWithGPS's idea, made it more community and bike packing focused, charged as much as they could then spent as much as they could on ads, everywhere.
+
+Sorry if that this seems to have turned into a bit of a rant, I get that many of their decisions are to create a stable business model and generate revenue, but the industry hasn't been doing great lately, look at Trailforks, they just made everyone's contributed photos/videos/etc. premium! Don't get me wrong, if I came up with something that I think is worth a subscription I'd put one together, but all of this nickel and diming for nothing new.
+  
+    To be clear, I got into cycling back in 2017, from then to now, I haven't seen a new big app, service, or system, appear anywhere in the space. Maybe something popped up that I missed, but, other than your innovation, what innovation have you spotted from these companies that figured out how to turn a profit?
+  
+"
+disabled,,"
+
+    Start the browser in safe mode?
+  
+    Disable extensions and enable one-by-one until you find it?
+  
+    Something like this? https://stackoverflow.com/questions/22729686/set-custom-protocol-handler-in-firefox
+
+"
+disabled,,"
+
+    Aah! Now I get it. You're not solving the shortest path problem but rather a ""find the best round trip"" problem. I guess this problem is a order of magnitude harder to solve as there's a way bigger number of options and a greedy algorithm like Dijkstra won't help you because your problem space isn't a matroid. In this case my naive approach with my background in optimization / operations research would be (as always) an iterated local search on the graph.
+  
+    I guess if you already have something that works for you, there's no need to switch to OSR. But if you are interested, you can email me on LinkedIn or via mail and we'll have a chat.
+  
+    For R-Tree I can recommend looking at https://github.com/tidwall/rtree.cWe're working on bringing it into https://github.com/felixguendling/cista to skip building the tree at startup (just load a binary buffer into memory and start using it, like we do with everything else (public transport timetable, geocoding for lookup, reverse-geocoding, etc.).
+  
+    Regarding indoor routing: it's nothing special, like always using ways tagged with `highway`. So currently, we don't have area routing from room area to room area. The main difference is that the routing tracks level changes correctly and doesn't ""fall through the ceiling"" if nodes are used on multiple levels. Level changes are allowed at stairs, ramps, elevators and entries/exits.
+  
+    Ways are not aggregated. The idea behind this was that this would enable us to implement a real-time update functionality with minutely OpenStreetMap changesets by keeping nodes and ways exactly as they are in OSM (no aggregation). This is not implemented yet but it should be possible (simply add a bit vector to disable ways and add a new one + update the list of ways at a node). But it's not a priority for now. Import takes ~40min for the planet file on my hardware. So hourly updates could be implemented already now. Not sure if minutely updates are even needed. So an option would be to speedup the search by aggregating ways. However, for the current main use case (one to many and many to one within ~1h walking/driving distance), query times are ok.
+  
+    If you're interested to integrate public transport as an option to get somewhere or for the way back, MOTIS could be a good option :-)
+  
+"
+disabled,,"
+
+    Maxar was disabled for all of OSM in July. Neither iD, nor JOSM or StreetComplete can access it.
+  
+"
+disabled,,"
+
+    Looks like we had this option turned on: ""Get recommended to individual redditors: Let Reddit recommend your community to people who have similar interests"".
+  
+    I have disabled it now.
+  
+"
+disabled,,"
+
+    I map places disabled people will find hard to access or use. Pedestrian crossing with no ramps for wheelchairs to get back on to the footpath. Footpaths that finish at a corner with no way a wheelchair can get down on to the road to use the crossing. Audible tones at pedestrian crossings so the deaf can hear when the lights have changed…. That type of thing
+  
+"
+disabled,,"
+
+    I messed around with StreetComplete a bit, but only started using it frequently when I disabled a large number of quests. It was just too cluttered with things I'm not interested in. Adding building numbers is very useful though, and the app does a great job of making adding them easy. It's my go to app for this task now.
+  
+"
+disabled,,"
+
+    Well that and a footway doesn't allow vehicles at all (normally due to width), whereas a pedestrian street may still allow authorised vehicles (e.g. disabled, deliveries, maintenance) at certain times.
+  
+"
+disabled,,"
+
+    Yes, it's possible via QGIS.
+  
+https://www.maptiler.com/qgis-plugin/
+
+    You can edit the layer styling in QGIS to disable labels and export the result as SVG.
+  
+"
+disabled,,"
+
+    Thanks! I never thought it was under the share option at all.That said the problem with OSM is not allowing me to disable the labels unlike the Maptiler site (which is actually based on OSM).
+  
+    Just wondering if there is also a hidden option to hide labels in OSM?
+  
+"
+disabled,,"
+
+    I believe editing on the mobile website is disabled, you could look for an option in your browser that says something like ""request desktop site"", but this makes everything very small on a mobile screen. You're probably better off downloading an app like Street Complete for simple edits or Vespucci for more in depth edits.
+  
+"
+disabled,,"
+
+    For the second issue, the tile https://tile.openstreetmap.org/11/1013/767.png hasn't been updated yet. Even if you access it with cache disabled.
+  
+    The way OSM works is that lower zoom levels get generated on the fly, while the upper zoom levels are done at a schedule that depends on server load. There is really nothing you can do but wait. Or donate money to OSM so they can buy more servers and make it faster :v
+  
+"
+disabled,,"
+
+    Seems like they disabled it 6 months ago! https://www.reddit.com/r/openstreetmap/comments/wshpcl/tile_status_info_and_rerender_requests_not/
+
+"
+disabled,,"
+
+    The disabled parking spots are tagged
+  
+"
+disabled,,"
+
+    Cache is only disabled when DevTools is opened and I believe cache is only deleted from the site in which you opened DevTools. At least for Chrome.
+  
+    I leave cache disabled all the time and no problem with loading times as long as I close DevTools when I'm done with editing. The purpose of disabling cache is for instant updates to front end development and that is principally what editing the map is.
+  
+"
+disabled,,"
+
+    Whenever I add a parking lot and see a disabled parking space I try to add them, even if I don't add the total spaces in the lot. I think Street Complete also has a question around this, which is likely helping. Don't know if there's any stats about how much Street Complete is helping the map. Would love to see usage statistics like number of edits or which regions benefit most from it.
+  
+"
+disabled,,"
+
+    I'm looking into this right now a https://wiki.openstreetmap.org/wiki/Wikimedia_Commons
+
+
+    Wikimedia Commons hosts a lot of photos of more or less noteworthy physical objects everywhere (buildings and all kinds of structures, shops, trees, artwork, memorials, signs, parks etc), which may never actually be used in Wikipedias etc, but can hold information valuable to OpenStreetMap mappers (in the image itself or in its metainfo). As such contributing photos to it can also be worthwhile for OSM contributors as well as linking to those photos from OSM objects. For being eligible for hosting on Commons, photos just need to be ""realistically useful for an educational purpose"", which will hold true for many photos of interest to OSM, and be freely licensed or public domain.
+  
+
+
+    Commons' project scope is very wide, and it is interpreted to include images of bicycle parking that are not noteworthy in any way.
+  
+
+    Does this really mean that we can take a picture of basically anything and provide a link to them? This is incredibly useful because you'd have ""proof"" of ground data. How far does this go? E.g. what about a pedestrian crossing which is useful for disabled people. Usually I go there and tag the object accordingly but with a picture I'd have proof of the kerbs. Same goes for surface quality. I wonder right now why I usually don't take a picture of it for future reference. This is even good even if I don't upload it. But is it neccessary or good or desired to upload a picture of a road just because I want to document the surface? Benches? Waste baskets? Bus stops? Opening hours? Guide posts?
+  
+
+    Most licenses used by Commons images do not allow them to be used for mapping.
+  
+
+    Which license should be used when uploading images? I can choose from 5 different licenses on commons. Attribution-ShareAlike 4.0 / CC BY 4.0?
+  
+    Edit:
+  
+    This opens up a lot of possibilities. E.g. Streetcomplete is completely missing out on this. There could be quests for all the stores, churches and what not. Osm would become much better in terms of usability. Many (non osm) people complain about missing pictures which is convenient in gmaps.
+  
+    I know of osmand that uses wikimedia images.
+  
+"
+disabled,,"
+
+fee:conditional=no @ (stay > 5 hours) shouldn't be used. You already pay for the first 5 hours. This is a matter of charging rate.
+  
+    A:
+  
+amenity=parking
+parking=*
+opening_hours=Mo-Su 06:00-24:00
+access=private
+access:conditional=yes @ (disabled)
+fee=no
+    B:
+  
+opening_hours=Mo-Su 06:00-24:00
+access=yes
+fee=yes
+payment:app=yes
+payment:others=no
+fee:motorcycle=no
+fee:conditional=no @ (00:00-06:00, 15:45-24:00; Sa-Su,PH 00:00-24:00; disabled; private)
+charge=0.5 USD/15 minute
+maxcharge=10 USD
+    C:
+  
+opening_hours=Mo-Su 06:00-24:00
+access=yes
+fee=yes
+fee:conditional=no @ (15:45-24:00; Sa-Su,PH 00:00-24:00; disabled)
+charge=2 USD/hour
+max_charge=10 USD
+    I wouldn't take the ""permit"" literally as =permit. Assuming it's for staff and students only.
+  
+    I don't like using access:disabled= and disabled=. As a legal restriction, they look confusing alongside the physical wheelchair= accessibility. These are not recommended in the *:conditional= proposal following them, so I don't want to mix the two style.
+  
+    B hasaccess=yes with the app-only restriction handled in fee=yes + payment:app=yes + payment:others=no. Although there are other tags using *=only, this allows you to specify multiple methods by payment:*=yes + payment:*=yes + payment:others=no.
+  
+    I mentioned the idea of maxcharge= & mincharge= in Discord last week to handle situations like this (and for minimum spending in restatements or card payments). Don't think charge= can handle this well. There are 2 https://taginfo.openstreetmap.org/tags/maxcharge=2.00€ instances. However, the Euro symbol shouldn't be used, following the ISO 4217 currency code convention elsewhere.
+  
+    A personal note: The charge= syntax is informally established. Although this is a unit (therefore singular =*/15 minute), having a format different from interval= (allowing {M}), duration ({MM}, {HH:MM}, and {HH:MM:SS}), and maxstay & minstay= (plural words) is confusing. Following start_date=, standardizing on ISO 8601 time period PT1H and PT15M would be more consistent.
+  
+"
+disabled,,"
+
+    I have to respectfully disagree with regard to the ubiquity of Google Map usage. I haven't used it in years, have disabled it on every Android device I ever owned (though it frequently re-enables itself), have rooted Android phones specifically to get rid of it and all else Google, and finally took the final step of switching to iOS, mainly due to my hatred of all things Google.
+  
+    You want to know what the last straw was? I was driving on the New York State Thruway without any navigation apps running. I stopped at a rest area to pee, and Google Maps chimed in asking me to review the rest area.
+  
+    I mean, really, is nothing sacred?
+  
+    So I used my veteran's discount to buy an iPhone, and rooted the Android and installed AOSiP on it. No GAPPS, no Google Play. It's now a dedicated mapping and navigation device that happens to have telephony capabilities. I took out a $15.00 / month T-Mobile prepaid plan for the little bit of data it needs for Magic Earth's traffic functions to work and for the occasional edits I do while traveling.
+  
+    I've also introduced numerous friends and family to Magic Earth (along with an explanation about where the maps come from), all of whom prefer it to Google Maps, partially because they also dislike Google. They don't hate Google as much as I do, but neither do they have the benefit of having done business with Google for 15 years, during which that hatred was cultivated and blossomed.
+  
+    My point? For me, I switched to apps that use OSM because I hated Google's intrusions on my privacy. Furthermore, it was that switch that got me involved with OSM editing, Mapillary (before FB took them over), and now KartaView. It all started with my being tired of Google looking over my shoulder and tracking every detail of my daily life, right down to where I stopped to pee on the Thruway.
+  
+    That's one of the reasons I love Magic Earth so much. Yes, it's pretty and functional. But more importantly, it's privacy-centered: and that's the ""selling"" point that has helped me gain converts. No one likes being tracked. They tolerate it to get the service. But if you show them that they can get excellent navigation without Big Brother looking over their shoulder, they're interested.
+  
+    So that's my number one selling point: OSM isn't Google.
+  
+    I also explain the concept behind OSM, my own little part in that picture, and how they can get involved if they want to. A few have. Most haven't. But they all know how the maps are made.
+  
+    My neighbors also know about and appreciate OSM and my little part in it. I'm not a prolific editor. I'm just active in my own, extremely rural part of the world, where companies like Google can't be bothered sending mappers. There's nothing here for them to make money hawking, so they're not interested.
+  
+    That's why ""in these parts,"" due to efforts by myself and other local volunteers, OSM maps are the best -- far and away better than Google's or anyone else's. That and the fact that mobile data coverage sucks in the boondocks are also selling points for Magic Earth, OsmAnd, and other apps that feature offline maps: Not only are the maps better, but they don't disappear in the middle of nowhere.
+  
+    Finally, ride-sharing is another way I spread the word. Not the Uber or Lyft kind of ride-sharing, but the informal type where two or more of us happen to need to go somewhere and we decide to share a ride. I fire up an OSM-powered app (usually Magic Earth), and more often than not, I wind up installing it on their phone for them when we get home.
+  
+    In summary, I suggest you try the approach of simply pointing out to people that they can get good navigation without becoming slaves on Google's data auction block. No one likes being tracked. Show them that they don't have to be, and chances are you'll make a convert to the app; and from there, you can launch into OSM and explain how our volunteers make it all possible.
+  
+"
+disabled,,"
+
+You can append ""/dirty"" to the tile URL to force it to be re-rendered ;⁠-⁠)
+
+    Not any more since they disabled it https://www.reddit.com/r/openstreetmap/comments/wshpcl/tile_status_info_and_rerender_requests_not/
+
+"
+disabled,,"
+
+    as far as I've read they disabled anonymous editing quite a while ago.
+  
+"
+accommodations,,"
+
+    A major difference would be that opencyclemap mostly just displays designated bicycle routes and a few cycling adjacent amenities. Cyclsom on the other hand also displays roads with lower speed limits and the locations of traffic calming measures. They also show roads that have the bicycle=shared_lane tag, which opencyclemap doesn't make note of.
+  
+    Consequently, I find opencyclemap easier to read if you're only looking for routes, because they're much more prominent and it's not as visually cluttered. However I do prefer Cyclosm because I get a better understanding of the road conditions, especially on roads that aren't on designated cycling routes.
+  
+    Edit:
+  
+    I forgot to mention that CyclOSM shows how many bikes a rack/bike stand can accommodate.
+  
+"
+accommodations,,"
+
+    See here: https://wiki.openstreetmap.org/wiki/Tag:building=apartments
+
+
+    Tag:building=apartments
+  
+
+
+    A building constructed to provide residential accommodation arranged into individual dwellings/apartments/flats
+  
+
+    ...
+  
+
+    Some apartment blocks may also have retail outlets on the ground floor.
+  
+
+    So I think this qualifies - shops on the ground floor, flat above is still ""apartments"" ?
+  
+"
+accommodations,,"
+
+    Suggestion:
+  
+    Map them as barrier=kerb, as the space between them is large enough to accommodate i.e. a wheelchair user.
+  
+    At the point where the actual steps is located, map that as traditional with highway=steps and an incline=*
+
+    There also exist suggestions for marking areas as steps, but these are not very much in use (see links at the bottom of highway=steps page).
+  
+"
+accommodations,,"
+
+    MAPS.ME does include accomodation from Booking.com on the map - independently from what is in OSM. This is evidenced by the fact that each hotel that is present both in Booking.com and OSM gets a duplicate icon.
+  
+    Whoever responded to you is butthurt about Booking.com (maybe rightfully so given their criticized tactics, or maybe due to them being competition), but has no idea how all of it works.
+  
+    While in the case of hotels Booking.com and that professional compete over commission, in case of restaurants? No idea how it would even work, as Booking.com doesn't list restaurants (those without accommodation).
+  
+    Now in case of Yelp AFAIK a restaurant can pay to control the reviews they get or to do paid promotion, but MAPS.ME doesn't upload data to Yelp either.
+  
+    Whenever you add something via MAPS.ME it lands only in the OSM database.
+  
+"
+accommodations,,"
+
+    Some mappers like to map a great deal of detail, and one of the great things about OSM is that it accommodates editors interests, whether that's focusing on building geometry details, bike racks, or health clinics. I haven't gone into that level of building detail myself, but I think your answer will be be to map the building as a three dimensional object, with the building=* tag on the footprint, and the roof, with overhang on a building: part=* outline, with additional tags for roof shape, and other details. It'd be worth checking out [the wiki page on 3D buildings] (https://wiki.openstreetmap.org/wiki/Simple_3D_buildings)
+  
+"
+accommodations,,"
+
+    We've all made mistakes - don't worry about it and thank you for raising it - just to make certain I understand properly that building is primarily for accommodation if its where orphans live? So it has bedrooms, kitchens, social spaces etc.? If so I'd personally tag it more along those lines rather then a school - I think of the later as being a building mostly filled with classrooms.
+  
+    If that is the case then maybe:
+  
+
+    social_facility=group_home
+  
+
+
+    social_facility:for=orphan
+  
+
+    Might be the tags to go for?
+  
+    If the whole area is mostly for education then maybe amenity=school could be added to an area covering the site?
+  
+    That still dosn't cover the rehab centre - I'm less sure about how to do that. If that isn't one clear building maybe a point?
+  
+    I think for me a big thing is which is the primary usage of things? Is this a school with lots of pupils but also happens to have a few orphans that stay overnight? With fewer still that need rehab? Or is it primarily an orphanage, all the children there are orphans and most of them will need education which just happens to be onsite, and some rehab? Or is the rebab open to non-orphans as well?
+  
+"
+accommodations,,"
+
+    These issues are not limited to East Africa.
+  
+
+
+    Many pubs in the UK have ""hotel"" in the name, but either don't offer accommodation or never offered it. Similarly McDonald's refer to their outlets as restaurants but we tag them as amenity=fast_food
+  
+
+
+    Mini-markets in most countries are best tagged shop=convenience. Some useful rules of thumb for the difference: size (floor area perhaps 1000 m2 upwards, range of products - which will differ by country, trolleys not shopping baskets)
+  
+
+
+    Small kiosks are best tagged as the type of shop  - similar things apply in markets and even for people who sell in the street (as long as they are usually in the same place). As someone else has said you can add building=kiosk. I have used kiosk=yes, but totally informally (in practice we could do with a tag indicating what kind of format a given shop might be: bricks & mortar, market stall, kiosk, street vendor). I wrote something about this issue quite some time ago. I never got round to writing my notes up on market stalls and street vendors.
+  
+
+
+    Doctors/clinics/hospitals: this is more awkward, and difficult to resolve because many medical facilities of all kinds across Africa, India & probably elsewhere have been tagged with hospital or clinic. Resolving the correct tag really needs some on-the-ground work and some really good local knowledge.
+  
+
+
+    There are quite a number of towns and cities across Africa with quite a lot of retail outlets mapped. I'm not so familiar with those in East Africa, but Accra (Ghana) and Dakar (Senegal) have fairly high densities of POIs. Certainly around Accra these are often linked to Mapillary images so that one can get a feel for what people are tagging. Obviously in central business districts many retail outlets are not dissimilar to what one sees in Europe & North America, but there are plenty of POIs elsewhere in the city or its hinterland.
+  
+"
+accommodations,,"
+
+    Yes, I was specifically thinking of these notes, which may reflect firms actually located in ""The Hub"" or may just be accommodation addresses (a paving contractor located in a city centre office seems implausible).
+  
+    How notes are resolved is essentially a matter for a local mapping community. As ours uses notes to track changes over a long time we tend to favour leaving them open unless truly resolved. I have no issues if other communities take a different approach.
+  
+"
+accommodations,,"
+
+    I used to do the same - and it's probably fine in many instances - but I've been mapping long enough to see single-business buildings change occupants multiple times. If you keep that info on the building, you have to delete tags to accommodate the new business. Having it as a separate POI allows you to mark the old business as disused, and create a new POI for the new business. If another mapper comes along to add the old business, they'll see that it's actually permanently closed and not something they should add. Also, in instances where a business moves from one location to another, you can move the POI itself while preserving the history of its prior location(s).
+  
+"
+accessibility,,"
+
+This comes up a lot with people that don't like having certain trails on the map, please read this wiki article.
+
+    But some suggestions in there are:
+  
+
+    Instead of deleting these trails, it is common practice in OSM to use various tags to describe the trails' features, such as:
+  
+
+
+    access= - For describing the legal accessibility of a feature. (my addition: don't tag as private just because you don't want the trail to be there, it will get corrected.)
+  
+
+
+informal= - Indicates whether the feature was intentionally planned or formally set up.
+  
+
+
+trail_visibility= - Classification scheme for trail visibility and way-finding skill required.
+  
+
+
+operator:type= - Defines the type of operator.
+  
+
+
+ownership= - Indicates what type of organization owns land, facility, etc.
+  
+
+
+sac_scale= - A difficulty rating scheme for hiking trails.
+  
+
+    I'm not sure what apps use which tags or how, but OSM US has a Trails Working Group and a good amount of app publishers work together with them to make sure that using informal trails is discouraged and they are not rendered on the map. https://wiki.openstreetmap.org/wiki/United_States/Trail_Access_Project
+
+This article also has suggested tags for different kinds of trails (official trails, discouraged unofficial trails, etc.)
+
+"
+accessibility,,"
+
+    You responded quickly so please indulge my sharing a few more thoughts:
+  
+
+
+    I agree with others in these comments that the primary reason OSM doesn't use graph databases (widely) is because the standard SQL databases of olde are more popular. To me, this comes down to accessibility: a community of people who bring a range of backgrounds and expertise will likely settle for the most common tools and workflows that folks already have experience with. Not necessarily a bad thing, but can make it difficult to develop and adopt potentially better tools.
+  
+
+
+    Personally, I think OSM in graph databases is right around the corner. As you say it's a natural fit for the data model, and dbs like neo4j are performant enough (I think!) to accomplish this. I really want this to happen because a) it would be cool and b) it would help enable planet-scale network analysis which is currently difficult.
+  
+
+
+    There are already some interesting tools that get close to this. There is a great Python package for loading OSM data into networkx, though I don't think it's viable for planet-scale data in most cases. Googling ""neo4j OSM"" yields some interesting projects on GitHub that I want to look into further (but don't look active?).
+  
+
+
+    To me, the biggest thing I want is to not only load the OSM data into a graph database, but also keep that data up-to-date by applying OSM change files to the database. This is, in my view, one of the most powerful features of osm2pgsql. I plan to implement this idea, but I have a lot of pots boiling at the moment so that might take a long time. Hopefully someone will beat me to it lol (if anyone wants to talk through this problem in more detail hmu)
+  
+
+
+    my endgame is for something like martin to serve tiles out of a graph database, live. put that behind a cache and you could power some very interesting map applications...
+  
+
+
+    peace.
+  
+"
+accessibility,,"
+
+    For mobile data collection, I'm using two things currently:
+  
+
+
+    Go Map!! -- I've found it helpful for updating existing tags or dropping new nodes (ex: bike rack location). I've found it not as helpful for drawing new feature geometry.
+  
+
+
+Mapillary Mobile App -- I'm using this to visually survey an area, such as while walking around, and then sharing that data with other mappers. The information becomes automatically accessible in OSM after a day or so. It's a little like your existing workflow, with the additional benefits of computerized feature detection and accessibility in the OSM browser editor. Among the drawbacks are: (1) once I'm doing a capture it feels weird to stop and tag because I have to open a different app, and (2) the smartphone captures are not that smooth when I play back the walk in Mapillary. I would like to try doing a capture using a GoPro MAX. I think the results will be better.
+  
+
+
+"
+accessibility,,"
+
+    Depends on the local mapping approach, but increasingly sidewalks are being mapped separately to allow for more nuanced information about crosswalks and curb cuts for accessibility.
+  
+"
+accessibility,,"
+
+    Just want to give a counterpoint to the criticisms I'm seeing. IMO, encouraging a user to map whatever they want - as long as it's done well - is better for the project as a whole than guilting them into trudging through tedious edits they have no interest in and having them ultimately bail completely. If you want to prioritize your work based on some subjective sense of what would have the most utility, you can do that. More power to you. But others don't have to. At the end of the day, any work you do is something that someone else doesn't have to do and works toward a more ""complete"" geographical dataset. So any work is good work in my mind.
+  
+    Additionally, while there are likely users that stick to one ""mode"" of mapping, it's not something you should assume. Lots of us like to shift between modes to expand or refresh our knowledge and skillsets. Sometimes I'm in the mood to do stuff like parking spaces, sometimes I'll plop myself in the middle of nowhere and clean up a county's worth of badly traced farm roads, and other times I'll spend a day tagging accessibility info for crosswalks. If you see someone eating a burger, don't assume they've never had a salad.
+  
+"
+accessibility,,"
+
+    Exactly. Capturing the nuances of sidewalks and other pedestrian paths in the tags of a corresponding street way can be difficult sometimes because those ways are by definition meant to define a street. You can't assess or even represent the accessibility of a pedestrian route to a sufficient level of granularity solely through tags on the street parallel to it. And you certainly can't capture the properties of an intersection's curb cuts and tactile pavement that way.
+  
+    The world is not comprised solely of paths that motorized vehicles traverse. There are pedestrians, cyclists, wheelchair users, and so forth. When you envision some ideal version of OSM that is ""100% complete,"" it should be one that accounts for EVERYONE. And tagging sidewalk=left or sidewalk=right isn't enough, in my opinion, anyway.
+  
+"
+accessibility,,"
+
+    I am 100% Team Separate Sidewalks. You can add all kinds of details like curb/kerb height, tactile paving, crossing type, etc. This is very useful for accessibility mapping.
+  
+"
+accessibility,,"
+
+    I would refer to the OpenSidewalk specifications. The project is based out of University of Washington, and is being used to produce accessibility maps (AccessMap) for wheelchair accessibility.
+  
+    The spec doesn't call for paths to explicitly included foot:""yes"". However, the spec does ask for some tags on kerbs/marked crossings.
+  
+"
+accessibility,,"
+
+    Separate sidewalk are most definitely more useful. They are rendered, they route better, then show the actual geometry, they show barriers and areas between the road and that path, they have kerbs and accessibility information, they connect to features, etc. etc. There is just a ton of detail that separate ways capture that tags on the main road don't.
+  
+    Personally, I almost always map sidewalks separately (and most mappers doing detailed mapping do in my region). I know some people religiously defend placing every tag on the main way. But that's such a car-centric view of the world. If you ever want to use a map as a pedestrian, you quickly see how badly biased that is. Imagine if we only mapped sidewalks and added an extra tag highway:left=secondary. Suddenly everyone would be up in arms even though that's literally what is happening now only from the vehicle-centric perspective.
+  
+"
+accessibility,,"
+
+    I’m not really a fan of area:highway=*, because it makes everything look so cluttered. It definitely makes editing more difficult.
+  
+    Instead, I always map the curbs (barrier=kerb). On top of the easier experience, you can also use this tag to display accessibility information (for example, by providing information on wheelchair friendliness).
+  
+    In Berlin, a group of micromappers created an awesome project (https://strassenraumkarte.osm-berlin.org/?map=micromap#18/52.47756/13.42701), showing an insane level of detail. However, they haven’t updated the blog in quite a while, so I’m not sure if they have any future plans to expand the renderer.
+  
+    I’m not aware of any other renderers showing street-level details, but I hope this may change in the (near) future.
+  
+"
+accessibility,,"
+
+
+    Vector or raster tiles? :-)
+  
+
+    Vector tiles!
+  
+    I have a lot of hope for vector tiles with client-side rendering. They make it more feasible to offer the map user some control over the map that is being displayed: Enabling localized names, supporting accessibility features (font size, contrast, colourblind vision etc.), and supporting plain old personal preferences. And vector tiles are a natural fit for interactive features such as clickable POI.
+  
+    I also expect to see a boost in creativity once people who are skilled at map design can take a commoditized source of tiles in a standard vector format for granted. With raster tiles, serving up a global map in your own style tends to imply setting up a tile sever, or knowing/hiring someone to do so. This seems like a considerable barrier to entry.
+  
+    The holy grail in this regard would be vector tiles that can contain all OpenStreetMap data, including relations, free-form tagging, etc., because this would give the greatest flexibility for the client. (Of course, actually delivering all OSM data very quickly stops being an option once we zoom out – it sadly becomes inevitable for the server to filter out some of the data and therefore limit the freedom of the client. Still, it would be nice to have a standard format that at least in principle supports everything that's possible in the OSM data model.)
+  
+"
+accessibility,,"
+
+    This is really awesome!
+  
+    Here's a summary of the video (generated by Kagi):
+  
+
+
+    Addis Map Transit works to map public transportation in Addis Ababa, Ethiopia using OpenStreetMap. They have mapped bus routes, stations and worked to provide digital transportation information services.
+  
+
+
+    Digital Matatus Consortium worked to map matatu (mini-bus) routes in Nairobi, Kenya to provide open transportation data and analyze accessibility issues. They standardized the data in GTFS format.
+  
+
+
+    Truy Association helps make public transportation easier and more accessible in the global South through mobile apps and open data. They encourage communities to map their transportation systems.
+  
+
+
+    Mobility Hub created an online course to teach people how to map public transportation in OpenStreetMap, covering topics like GTFS and using the JOSM editor.
+  
+
+
+    Mapping transportation helps provide digital route planning apps and services, empowering users and operators. It also allows analysis of issues like access to services.
+  
+
+
+    Open data standards like GTFS are important to make transportation data usable in apps and analysis. Converting OSM data to GTFS was a focus.
+  
+
+
+    Community involvement and crowdsourced data helps keep transportation maps accurate and up-to-date as systems change.
+  
+
+
+    Presenters discussed challenges like gaining permissions and maintaining government relationships and data.
+  
+
+
+    Transportation mapping empowers underserved groups and improves planning and equitable access to opportunities.
+  
+
+
+    Open source tools, networks and training are needed to support mapping efforts globally, especially in the global South.
+  
+
+
+"
+accessibility,,"
+
+    If the spaces are tagged with accessibility data then I could absolutely see a benefit
+  
+"
+accessibility,,"
+
+Always has been
+
+this has been an accessibility service from your friendly neighborhood bot
+
+"
+accessibility,,"
+
+    Super quick to add all the extra information to POIs, fast to delete old POIs and super quick to add detailed POIs to a map.  You can easily walk down a street and add every store and POI in an area or detailed mapping, with Opening Hours, Handicap accessibility, contact information,credit card information ECT.  Street complete is far limited and not an editor rather a serious of questions.
+  
+"
+accessibility,,"
+
+
+    you easily get into a situation where you've tagged the crosswalk twice: once as the footway intersecting the road and again at the actual intersecting node
+  
+
+    The footway intersecting the road is highway=footway, footway=crossing. The actual intersecting node is highway=crossing, crossing=X. This is not considered double tagging at all, and routers know exactly how to deal with it. The node is important for providing information on things like traffic signals, while the footway has useful surface information and wheelchair accessibility.
+  
+"
+accessibility,,"
+
+    I'm living in a well developed city. Almost, always on Pavement  Overlay and do quests mainly for pavements, road surfaces,  crossings, traffic lights, wheelchair accessibility and various amenities.
+  
+"
+accessibility,,"
+
+    Ever tried Geocaching?  One thing I learned decades ago bushwacking off trails to caches is such that far off isn't likely.
+  
+    Trails tend to run along others, hunters tend to go elsewhere, and features like clearings/ponds/cliffs/""caves"" tend to have visitors.
+  
+    Since many nature areas without management aren't mapped that specifically, I'm dubious you'd hit your parameters.
+  
+    What I'd do instead is use aerial footage, and follow a stream.  Compare to trails and topography for accessibility.
+  
+    Now scope out the area, following deer tracks or other animal tracks might take you away from ""civilization"", until you stumble across liter, heh.  People are rather pervasive.
+  
+    The out of the way spots tend to lack accessibility/draw and populations, less mapped areas with less searchable detail.
+  
+"
+accessibility,,"
+
+    Ideally add the width=. Can be an approximation to the nearest integer (~2m?), by measuring the line length on JOSM against aerial imagery, eyeball, or even phone apps. If there are other obstacles, you have to judge the maxwidth:physical=.
+  
+highway=path can be used for this. Add surface=paving_stones. For bicycle= and motorcycle=, =yes if known to be legal, or perhaps =permissive if it's half-half.
+  
+    There is no obvious tag for physical accessibility by vehicle class. This is less verifiable than physical dimensions.
+  
+    Ps narrow= is for signs showing the road is narrowing, not narrow roads.
+  
+"
+accessibility,,"
+
+fee:conditional=no @ (stay > 5 hours) shouldn't be used. You already pay for the first 5 hours. This is a matter of charging rate.
+  
+    A:
+  
+amenity=parking
+parking=*
+opening_hours=Mo-Su 06:00-24:00
+access=private
+access:conditional=yes @ (disabled)
+fee=no
+    B:
+  
+opening_hours=Mo-Su 06:00-24:00
+access=yes
+fee=yes
+payment:app=yes
+payment:others=no
+fee:motorcycle=no
+fee:conditional=no @ (00:00-06:00, 15:45-24:00; Sa-Su,PH 00:00-24:00; disabled; private)
+charge=0.5 USD/15 minute
+maxcharge=10 USD
+    C:
+  
+opening_hours=Mo-Su 06:00-24:00
+access=yes
+fee=yes
+fee:conditional=no @ (15:45-24:00; Sa-Su,PH 00:00-24:00; disabled)
+charge=2 USD/hour
+max_charge=10 USD
+    I wouldn't take the ""permit"" literally as =permit. Assuming it's for staff and students only.
+  
+    I don't like using access:disabled= and disabled=. As a legal restriction, they look confusing alongside the physical wheelchair= accessibility. These are not recommended in the *:conditional= proposal following them, so I don't want to mix the two style.
+  
+    B hasaccess=yes with the app-only restriction handled in fee=yes + payment:app=yes + payment:others=no. Although there are other tags using *=only, this allows you to specify multiple methods by payment:*=yes + payment:*=yes + payment:others=no.
+  
+    I mentioned the idea of maxcharge= & mincharge= in Discord last week to handle situations like this (and for minimum spending in restatements or card payments). Don't think charge= can handle this well. There are 2 https://taginfo.openstreetmap.org/tags/maxcharge=2.00€ instances. However, the Euro symbol shouldn't be used, following the ISO 4217 currency code convention elsewhere.
+  
+    A personal note: The charge= syntax is informally established. Although this is a unit (therefore singular =*/15 minute), having a format different from interval= (allowing {M}), duration ({MM}, {HH:MM}, and {HH:MM:SS}), and maxstay & minstay= (plural words) is confusing. Following start_date=, standardizing on ISO 8601 time period PT1H and PT15M would be more consistent.
+  
+"
+accessibility,,"
+
+    Self-closing because of gravity? I kinda doubt that tag exists. You can try to find something like that on taginfo: https://taginfo.openstreetmap.org/tags/barrier=gate#combinations
+
+    If you don't find anything, you can put in ""self_closing=gravity"" and start a trend. Other value would be self_closing=hinge.
+  
+    What would be the purpose of this information, do you think? Maybe accessibility purposes?
+  
+"
+accessibility,,"
+
+    Who calls surface= ""garbage/useless""? I think the great majority of informed OSM editors know that this tag is used in routing engines.
+  
+    Of course, you do meet people with idiosyncratic views about detailed tagging. I recently learned that the “Lithuanian OSM community” – basically just one guy – has decided that sidewalks should not be mapped separately. He has QA tools that alert him if anyone has done so, and he reverts the change immediately. One might argue that wheelchair users need this more specific tagging (sidewalk= on a highway= doesn’t tell you about wheelchair accessibility), but it would fall on deaf ears.
+  
+"
+accessible,,"
+
+    My university uses Mazemap, which is a pretty complete and comprehensive solution. When connected to the uni network it leverages wifi network topology to accurately determine position, including floor level. Mazemap also take the detailed building data directly from the architectural system, so it's very consistent and accurate… every room in every building has a unique id that can be used for navigation. Getting directions works pretty well, too, including options for accessible navigation.
+  
+    So, I've had a lot of experience with indoor mapping and navigation (I integrated Mazemap into our uni website), and while I applaud your endeavour, and admit that even a mature product like mazemap is far from perfect, I'm not sure how anyone can hope to compete in this space without, literally, millions of dollars in backing. Still, feel free to surprise me!
+  
+    As an aside, after gathering detailed usage stats over several years, i don't think people use mapping apps for indoor navigation. They get to the front door of a building, then look for signage.
+  
+"
+accessible,,"
+
+    I'd say you'd have to use an official API to get the timetables which data you could then pair up with OSM data. I would check If you have or can get access to the timetable data in your local area and if not what alternative area provides an accessible timetable API.
+  
+"
+accessible,,"
+
+
+    However, seeing when a particular picture sattelite picture was taken is not possible.
+  
+
+    In the ID editor you can press ctrl + shift + B to show the background panel which sometimes - but not always - will give you a vague date range of when the imagery was taken.
+  
+    As for Google, you can only see the vintage of their satellite imagery with Google Earth Desktop. Instructions here. It's also useful because Google Maps on the web doesn't necessarily display the most recent imagery they have. Sometimes newer imagery is only accessible via Earth Desktop. I'm not condoning anyone use that imagery for OSM (because you shouldn't), just pointing it out in case anyone might be looking for newer satellite imagery for other purposes.
+  
+    Which one is more recent depends on the area. For me, Google Earth's most recent imagery is from February 2024 while Bing only just recently updated to late summer of 2023 (which was a step up from the summer 2020 imagery).
+  
+"
+accessible,,"
+
+    Its nice. I've been focussing on adding accessible ammenities that I find on my dog walks that aren't represented on the map.
+  
+"
+accessible,,"
+
+    I figured it out after all... OSMtracker has its own separated app directory at:
+  
+/Android/data/net.osmtracker/files/osmtracker
+    This isn't accessible by any other applications on the phone, but when connected to the PC I can pull data from that directory without issues.
+  
+"
+accessible,,"
+
+    To have a cartography that's the closest to the reality, something like this I belive.
+  
+    I am not very familiar of the core of OMS, when I go to the website I belive it's the Mercator projection, and I didn't find yet a OMS ""globe"" easily accessible from smartphone.
+  
+    Basically, the other question it's why we keep using Mercator projection as the technology give us the ability to make globe (not only on OMS perspective).
+  
+    I do understand that as Mercator is used everywhere, and as it is the ground base of many people, then lot of habits have been used over time.
+  
+    But what could prevent a change to a 3d globe approach?
+  
+    On a close scale, no big change is encountered I belive, so I just try to figure out why the world don't switch to this perspective.
+  
+    And if technicals limitations is involved.
+  
+    What do you mean by useful proprieties?
+  
+"
+accessible,,"
+
+    Hey 👋. All the guidelines are here: https://osmfoundation.org/wiki/Licence/Attribution_Guidelines.
+  
+    You can probably collapse it after 5 seconds, and maybe even hide it behind the bottom sheet, as long as it starts visible and remains easily accessible if anyone wants to see it.
+  
+"
+accessible,,"
+
+    For mobile data collection, I'm using two things currently:
+  
+
+
+    Go Map!! -- I've found it helpful for updating existing tags or dropping new nodes (ex: bike rack location). I've found it not as helpful for drawing new feature geometry.
+  
+
+
+Mapillary Mobile App -- I'm using this to visually survey an area, such as while walking around, and then sharing that data with other mappers. The information becomes automatically accessible in OSM after a day or so. It's a little like your existing workflow, with the additional benefits of computerized feature detection and accessibility in the OSM browser editor. Among the drawbacks are: (1) once I'm doing a capture it feels weird to stop and tag because I have to open a different app, and (2) the smartphone captures are not that smooth when I play back the walk in Mapillary. I would like to try doing a capture using a GoPro MAX. I think the results will be better.
+  
+
+
+"
+accessible,,"
+
+    If every map is the same, it does not need to be displayed every time. But it must always be easily accessible. So it could start minimised on the other maps.
+  
+"
+accessible,,"
+
+    I had a read of this.  It seems like the edits are being detected and reverted quickly, but are still making it into downstream apps because there are some in existence when the data is sampled.
+  
+    Can downstream apps have some kind of window into a ""stabilised"" version of the data which excludes any edits that haven't stood unchanged for at least 48 hours?
+  
+    That way, anything that gets changed and then reverted quickly would be invisible to such a view of the data.  Still have a ""live"" version of the data accessible for anyone who needs to edit and review, but recommend that regular apps use the stabilised version.
+  
+    Take away the incentive for these people to do it and you would think it goes away.
+  
+"
+accessible,,"
+
+
+    Unless someone is alerted to a change, it may go unnoticed for a bit.
+  
+
+    Yes!
+  
+    In my other replies in this thread, I compared Wikipedia versus OSM, and this aspect is one that I think is really important to highlight.
+  
+    Wikipedia is a database that consists of marked-up text which gets rendered into formatted human-readable text with hyperlinks, footnotes, citations, images, tables, etc. You can't just put any markup or formatting you want into Wikipedia. It must render in the desired style for the Wikipedia main site, as interpreted by Mediawiki software. (This would be true even if you use Mediawiki software for something other than an ""encyclopedia"", which many groups do. It's been used to publish libraries of documents, travel guides, news, leaked documents, knowledgebases for sites like OSM, and many more purposes. The contents, whatever that may be, must render into HTML.) As secondary goals, it should also be accessible (meaning that the formatted output should be suitable for screen readers for the visually impaired: images should have descriptions, tables should not be used for indentation or spacing, etc.), it should format nicely on both small mobile screens as well as large desktop monitors (no giant tables with 100 columns, thank you very much), etc. Rendering the marked-up text into a formatted page is nearly instantaneous (although it's cached for performance reasons). Because the rendered text is the primary view, and nearly all of the input is visible in the output (e.g. citations and other templates have lots of parameters, but they pretty much all output corresponding text or affect how the output looks), it's easy to use the primary view, i.e. the rendered text, to notice mistakes in the data. Editing is, on the whole, fairly easy; it just requires typing text, some kinds of formatting can be done by clicking buttons, and you can even use a WYSIWYG editor. Looking at differences is also easy, because the input is also text, and methods for diffing text have been known and researched for at least 50 years, and the general concept of comparing two text documents is much older and used to be done with a red pen.
+  
+    OSM deals with GIS data, and this brings some fundamental differences. OSM also makes some choices that make life more difficult than it might otherwise be.
+  
+    OSM is a database that consists of geospatial data (such as the location of roads and buildings) and metadata (such as city names and bus routes). Humans can't easily ""view"" that as raw data, like we can with marked-up text. Just to look at the raw data, we need to render it into some kind of spatial view (a map of some kind); I think we can agree that not even savants can look at an ordered list of latitude-longitude points and interpret it the same as they would a line on a map showing a road. Since there's so much data (e.g. a city's name in 50 languages), it's completely impractical to render all of this into one static map. Unlike Wikipedia, where the ""product"" is rendered pages and not the marked-up text, OSM's product is the raw database. OSM provides a pre-rendered slippy map on its website, as this is a convenient format for many users. But this has become the default and in most cases only view for many users, even though lots of data isn't visible on the slippy map. You could see a lot more data with a dynamic interactive map, like what you get in iD or JOSM, but hardly anyone uses these to view OSM data. You can't edit the slippy map itself; you have to edit the input data. Editing is difficult because, despite a lot of the data being easy to visualize graphically, it requires a lot of manual work to edit. For example, if you want to change a bus route, you'd think there would be a way to click and drag the route on the map. But AFAIK, there isn't an editor or plugin that supports this; you have to manually add nodes and ways to a relation and set their type. Looking at diffs is perhaps the worst aspect. People could patrol edits much more thoroughly if they viewed edits in a dynamic map like in JOSM or iD, but I believe those editors don't even have a way to visualize a diff (a changeset)! Come to think of it, I don't know of any way to properly visualize a diff in OSM, where you can compare the ""before"" and ""after"". Changesets add, remove, or replace (update) items, but the only visualization I know of (on the slippy map) only shows the rendered slippy map in its present form (even for a historic changeset) and highlights the new objects on the map, but doesn't display the old ones at all, and doesn't highlight tags at all. If you want to see what tags were changed on an object, you have to click through to the previous version of that object and compare them by eye.
+  
+    It should be obvious that there's a huge gap here. Wikipedia is ""The product is the rendered text. Do tag for the renderer. Almost all changes to the product are visible to humans, and they're visible immediately. It's easy to edit. It's easy to view accurate and thorough diffs."" OSM is ""The product is the database (even though humans can't read the raw database at all, and most people only see the pre-rendered output). Don't tag for the renderer (even though most people only see the rendered output). Many changes to the product aren't visible in the rendered output, and it takes many minutes for them to be visible in pre-rendered output or to propagate to the many OSM mirrors. Editing is a lot of work. Viewing diffs is extremely difficult or even impossible.""
+  
+    No wonder OSM has problems patrolling edits looking for vandalism.
+  
+    In other comments here (and elsewhere over the last some years) I've harped on why ""OSM is about geography, not computer science"" is so fundamentally wrong. Computer science is about the manipulation of data, and that's the root of so many problems I just described. Visualizing the data is hard. Editing the data is hard. Diffing the data is hard. Yes, these problems do involve geography, but they are about how we use computer science to do geography. I don't deny that solving these problems may require some people who are familiar with advanced topics in geography, cartography, and other related disciplines. But implementing these solutions will take computer scientists (you need to solve things like ""diffing a map"" with algorithms) and software engineers.
+  
+    I've actually gone on a tangent, because you talked about alerting users to a change, such as following a watchlist. And yeah, that's just one more problem that Mediawiki has solved very thoroughly, and OSM essentially hasn't solved at all. And it's not a geography problem; it's a software problem.
+  
+"
+accessible,,"
+
+    The Strava Heatmap is easily accessible via https://github.com/zekefarwell/josm-strava-heatmap
+
+"
+accessible,,"
+
+    Yes. This is common where I live. They are accessible to the public. Actually accessing them requires you know a code, or call a phone number displayed on the cover.
+  
+    The important part is the correct tagging for that access
+  
+"
+accessible,,"
+
+    I would like to add that you are very valuable to your local Openstreetmap community, because you have the firsthand knowledge of how accessible something ""really"" is. I never know. For example, how hard is it to enter a shop that has a heavy door that opens to the inside? Is that even a factor?
+  
+"
+accessible,,"
+
+    As a solution/workaround, you could create a new map for each year or 6 months, whatever length of time average about 10 trips. Or just as you hit the limit. All the maps you create are stored on your Google account and are very easily accessible, anyway.
+  
+"
+accessible,,"
+
+    Yes, right now the editor is not working accessible. At first I thought it was the only the editor, but I'm finding other links associated with OSM not working (OSM user diaries)
+  
+    If you able to use it, then you could try Josm?
+  
+"
+accessible,,"
+
+    This is really awesome!
+  
+    Here's a summary of the video (generated by Kagi):
+  
+
+
+    Addis Map Transit works to map public transportation in Addis Ababa, Ethiopia using OpenStreetMap. They have mapped bus routes, stations and worked to provide digital transportation information services.
+  
+
+
+    Digital Matatus Consortium worked to map matatu (mini-bus) routes in Nairobi, Kenya to provide open transportation data and analyze accessibility issues. They standardized the data in GTFS format.
+  
+
+
+    Truy Association helps make public transportation easier and more accessible in the global South through mobile apps and open data. They encourage communities to map their transportation systems.
+  
+
+
+    Mobility Hub created an online course to teach people how to map public transportation in OpenStreetMap, covering topics like GTFS and using the JOSM editor.
+  
+
+
+    Mapping transportation helps provide digital route planning apps and services, empowering users and operators. It also allows analysis of issues like access to services.
+  
+
+
+    Open data standards like GTFS are important to make transportation data usable in apps and analysis. Converting OSM data to GTFS was a focus.
+  
+
+
+    Community involvement and crowdsourced data helps keep transportation maps accurate and up-to-date as systems change.
+  
+
+
+    Presenters discussed challenges like gaining permissions and maintaining government relationships and data.
+  
+
+
+    Transportation mapping empowers underserved groups and improves planning and equitable access to opportunities.
+  
+
+
+    Open source tools, networks and training are needed to support mapping efforts globally, especially in the global South.
+  
+
+
+"
+accessible,,"
+
+    gpx data can be imported directly into the OSM database with JOSM, but there are a few things to look out for. The ones that come to mind are not wanting to add duplicates, including partial duplicates, and wanting to make sure that the trails join to existing roads, or other footways. For example, if someone had already mapped a part of a trail you are uploading it would be easy to miss that fact, so careful inspection is required. It's good to maintain objects' histories, so this means if a partial trail existed then you can delete any overlap from the new part, then merge with the old one. This will maintain the object's history. On OSM we want the trails to join to the roads, which are mapped as centrelines, so the trail should be mapped from the road's centreline, not start at the location of the trailhead. This is to allow routing software to know that the trail is able to be accessed from the road (or parking lot, or whatever), and allows routing software to show walking directions that include both the trail and road. (If roads are not accessible by foot that's should be tagged on the road, not normally represented in the geometry.
+  
+"
+accessible,,"
+
+    I think this is the page you are looking for: https://wiki.openstreetmap.org/wiki/Limitations_on_mapping_private_information
+
+    Front doors to houses are OK, I am pretty sure, because you can see those from a public road. For large apartment buildings, that might even be very useful (you could put unit addresses on them), but for single-family houses less so. Interior layout of a shopping mall or other building generally accessible to the public is also OK, but of a school, I wouldn't do that (it is also not very useful).
+  
+"
+accessible,,"
+
+    With a surface=concrete tag duh.
+  
+    Combine it with landuse=bench_anchoring, and surface:colour=grey
+  
+    Don't forget the barrier=kerb to denote it's not easily accessible for wheelchairs.
+  
+"
+accessible,,"
+
+    A path is not accessible to motor vehicles, do it can't be anything.
+  
+    While adding the additional tags is nice it's by no means necessary. Even the most basic bit of info to a map is good, because it gives a starting point for other mapers to add to.
+  
+    I very much appreciate the contributions of new mappers, and think it's unwise to make the requirements for contributions seem more detailed than they are in fact.
+  
+    A way only tagged as highway=path is far far more useful than an unmapped trail. Adding surface and access tags are a nice extra, but not necessary.
+  
+"
+accessible,,"
+
+    Data are one thing. Making them accessible a whole other point. I paid for Osmand, because it's a fantastic and very feature-rich app.
+  
+"
+accessible,,"
+
+    I don't immediately see an appropriate hazard tag.
+  
+    It could be mapped as just a railway bridge (not accessible to pedestrians/cyclists) by removing the tags such as highway=cycleway, bicycle=designated, foot=designated.
+  
+    Or maybe highway=construction + construction=footway/construction=cycleway to mark it as under construction.
+  
+"
+accessible,,"
+
+    The key “access” is a legal indicator - see https://wiki.openstreetmap.org/wiki/Key:access
+
+    How will vary depending on legal jurisdiction and access laws. For example, Outdoor Access rules in Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿 would mean a long “private” driveway is accessible to pedestrians, cyclists and horse riders away from the building curtilage.
+  
+    Over the border in England 🏴󠁧󠁢󠁥󠁮󠁧󠁿, the same driveway would be private unless a right of way was on it.
+  
+    (A driveway that traverses the border multiple times would need access tags to be mapped in parts, each appropriate to the legal jurisdiction!)
+  
+    So unhelpfully I haven’t answered your question. But you now know why I cannot!
+  
+"
+accessible,,"
+
+    I like this romanticism of OSM as some vast, unknowable thing that you should never touch. Who knows, one of them nodes might be haunted! Oohhhhohohhhhhh!
+  
+    Just look at the history of the way. If it's several years old and the reality is that the path is so far gone that it's not traversable, just delete that shit. You observed it with your own eyes. If someone is mapping make-believe trails, then THEY are in the wrong.
+  
+    For example, imagine a curb cut at an intersection that gets paved over for some stupid reason and it's no longer accessible by wheelchair. Do you map it as still accessible simply because it was at some point? Of course not. You map the world as it is.
+  
+"
+inaccessibility,,"
+
+    Most hikers won't actually use OpenStreetMap but other hiking apps like AllTrails - it's up to those apps to decide what to render and what not to render. But if you mark access=no or access=private on OSM, it will render the trail on OSM itself as a grey color rather than a red color, marking it's inaccessibility.
+  
+"
+inaccessibility,,"
+
+    I think you should simply re-tag them as access=no.  They will still render but in ways that mark them as inaccessible to most (for example, all trails will label them as private).
+  
+    It wont stop everyone, but it may thwart a few.
+  
+    I imagine the national park service would also be privy to putting up signs along the trails, warning or discouraging those who would go down the informal paths. (you did mention its mostly foreign people however, who may need read English well)
+  
+"
+inaccessibility,,"
+
+    You should be able to mark the area as inaccessible for the public whilst enriching the area with features.
+  
+"
+inaccessibility,,"
+
+    Thank you for the time you put into moderating this subreddit.
+  
+    I am glad it has reopened.  It is a tiny sub with little traffic, so it doesn't produce much profit for reddit at all, so keeping it private really didn't matter to reddit.  However, it has a wealth of information from past posts and comments that was then inaccessible.  I was in the middle of looking something up on it last week when it went private, and then I was stuck until now when it came back online.
+  
+    I was worried that it was so small that reddit wouldn't bother to force it open, and then all the hard work produced by everyone who contributed here in the past would have been lost forever.
+  
+"
+inaccessibility,,"
+
+    If you mark them as access=private, their icon will be a bit transparent to show they are inaccessible.
+  
+"
+inaccessibility,,"
+
+    You do know that you have just asked a needlessly provocative question.
+  
+    I may have simply directed you to the OSM wiki, but I thought you'd know better. Go there and read it, please.
+  
+    The military bases (and minefields and physically inaccessible places, mind you) are not to be used by the general public. It means that in general there is no way to get there, either due to physical limits or exceptional restrictions, like national security.
+  
+    You can go to a private gate and ask to be let in, or maybe consider being yelled at as a viable option; you are definitely advised against trying that at a military base or a minefield. That's what access=no means.
+  
+"
+inaccessibility,,"
+
+    There is no defined limit. You can just tag roads and ignore houses altogether (they are inaccessible to the general public anyway). Or you can tag individual trees in gardens and windows on buildings (they can be used for navigation as well, even when they are behind a fence). OSM has always allowed anyone to tag as little or as much detail as they were willing to spend their time on, as long as the features are real and (semi-)permanent. If OP wants to tag the garage then there's no reason why he shouldn't. You can say that you wouldn't but don't try to talk for the whole community, especially with a slippery slope fallacy (the garage is visible from the outside, the rooms are not).
+  
+"
+inaccessibility,,"
+
+    This looks quite hard for a single query. How does overpass know that D is inaccessible, and not A, E, and B. The only difference is size of connected networks.
+  
+"
+inaccessibility,,"
+
+    OSM Inspector http://tools.geofabrik.de/osmi/ has a ""Routing"" view which shows all unconnected or inaccessible roads as well as islands and duplicate edges (among other things).
+  
+"
+inaccessibility,,"
+
+https://www.openstreetmap.org/#map=16/55.7360/12.5657&layers=O
+
+    And when zoomed out, it places the stop:
+  
+
+
+    On the wrong side of the tracks
+  
+
+
+    On an inaccessible area
+  
+
+
+    100 meters away from actual position - behind a large building.
+  
+
+
+    I can see what they are trying to do and why, but this is not an acceptable way to do ""guesstimates"".
+  
+"
+inaccessible,,"
+
+    Most hikers won't actually use OpenStreetMap but other hiking apps like AllTrails - it's up to those apps to decide what to render and what not to render. But if you mark access=no or access=private on OSM, it will render the trail on OSM itself as a grey color rather than a red color, marking it's inaccessibility.
+  
+"
+inaccessible,,"
+
+    I think you should simply re-tag them as access=no.  They will still render but in ways that mark them as inaccessible to most (for example, all trails will label them as private).
+  
+    It wont stop everyone, but it may thwart a few.
+  
+    I imagine the national park service would also be privy to putting up signs along the trails, warning or discouraging those who would go down the informal paths. (you did mention its mostly foreign people however, who may need read English well)
+  
+"
+inaccessible,,"
+
+    Thank you for the time you put into moderating this subreddit.
+  
+    I am glad it has reopened.  It is a tiny sub with little traffic, so it doesn't produce much profit for reddit at all, so keeping it private really didn't matter to reddit.  However, it has a wealth of information from past posts and comments that was then inaccessible.  I was in the middle of looking something up on it last week when it went private, and then I was stuck until now when it came back online.
+  
+    I was worried that it was so small that reddit wouldn't bother to force it open, and then all the hard work produced by everyone who contributed here in the past would have been lost forever.
+  
+"
+inaccessible,,"
+
+    You should be able to mark the area as inaccessible for the public whilst enriching the area with features.
+  
+"
+inaccessible,,"
+
+    If you mark them as access=private, their icon will be a bit transparent to show they are inaccessible.
+  
+"
+inaccessible,,"
+
+    You do know that you have just asked a needlessly provocative question.
+  
+    I may have simply directed you to the OSM wiki, but I thought you'd know better. Go there and read it, please.
+  
+    The military bases (and minefields and physically inaccessible places, mind you) are not to be used by the general public. It means that in general there is no way to get there, either due to physical limits or exceptional restrictions, like national security.
+  
+    You can go to a private gate and ask to be let in, or maybe consider being yelled at as a viable option; you are definitely advised against trying that at a military base or a minefield. That's what access=no means.
+  
+"
+inaccessible,,"
+
+    There is no defined limit. You can just tag roads and ignore houses altogether (they are inaccessible to the general public anyway). Or you can tag individual trees in gardens and windows on buildings (they can be used for navigation as well, even when they are behind a fence). OSM has always allowed anyone to tag as little or as much detail as they were willing to spend their time on, as long as the features are real and (semi-)permanent. If OP wants to tag the garage then there's no reason why he shouldn't. You can say that you wouldn't but don't try to talk for the whole community, especially with a slippery slope fallacy (the garage is visible from the outside, the rooms are not).
+  
+"
+inaccessible,,"
+
+    This looks quite hard for a single query. How does overpass know that D is inaccessible, and not A, E, and B. The only difference is size of connected networks.
+  
+"
+inaccessible,,"
+
+    OSM Inspector http://tools.geofabrik.de/osmi/ has a ""Routing"" view which shows all unconnected or inaccessible roads as well as islands and duplicate edges (among other things).
+  
+"
+inaccessible,,"
+
+https://www.openstreetmap.org/#map=16/55.7360/12.5657&layers=O
+
+    And when zoomed out, it places the stop:
+  
+
+
+    On the wrong side of the tracks
+  
+
+
+    On an inaccessible area
+  
+
+
+    100 meters away from actual position - behind a large building.
+  
+
+
+    I can see what they are trying to do and why, but this is not an acceptable way to do ""guesstimates"".
+  
+"
+health,,"
+
+    The JOSM conflation plugin is really good at doing this. Here's a guide on how to use it!
+  
+https://www.openstreetmap.org/user/watmildon/diary/401371
+
+    I still don't like using JOSM to edit, so I usually just use this plugin to find the missing POIs and map them in ID.
+  
+    I've been using it to find missing restaurants based on health inspection data
+  
+"
+health,,"
+
+    That's fair, I've asked myself the same thing (as someone who's contributed to open-source projects like Wikipedia, OSM, etc.)
+  
+    I can't really answer your question as to how useful it is (but it is a valid question).
+  
+    For me, if I'm not sure that my work is useful to others or not, I'll consider if the process is enjoyable or beneficial to me in some way, sorta like a hobby would be.
+  
+    Sometimes I edit Wikipedia because I like the mental exercise of phrasing things more clearly, and it's good writing practice. Wiktionary I'll add quotations for obscure words I see when reading, which keeps me engaged. OSM the process of drawing and adding roads calms me down sometimes. It's also a good excuse to get outside, explore the city, etc.
+  
+    That being said I will take breaks when it's not good for me—Wikipedia politics were affecting my mental health, or with OSM I wanted to spend time doing other things. It's a volunteer thing after all.
+  
+"
+health,,"
+
+    It's almost certain that OSM hadn't mapped have education or health facilities in Haiti in 2009. At that point we were a bunch of a few thousand volunteers who hadn't even mapped all the roads in Britain and Germany, let alone the hospitals in Haiti.
+  
+"
+health,,"
+
+    Like this?
+  
+https://medium.com/@giscience/jupyter-notebook-analysis-of-access-to-health-care-using-openrouteservice-isochrones-api-408a2090249f
+
+"
+health,,"
+
+    Don't assume that navigation or searching for a coffee shop are the only use cases for a map database. I recently wanted to analyse some health data against geography - something like do people who live near parks have better health than people who don't - so I downloaded part of OSM and combined it with my health dataset in a GIS application.
+  
+    If you ever mapped a park, leisure centre, healthcare facility, or even something not so 'nice' like a sewage farm, you've probably helped an analyst.
+  
+"
+health,,"
+
+    Road maintenance is a game of optimization: if they think they are about to redo the road in the next few years, they are less likely to come and fix. If they think the road is not heavily used, they are less likely to come.
+  
+    Think if it this way: you want better roads ? It means more money for the maintenance. It means less money for something else (education, health, security, culture) OR more taxes.
+  
+"
+health,,"
+
+gpd.GeoDataFrame(osm_health_departments, crs=""EPSG:32643"")
+    This sets (and does not reproject) the data to be in EPSG:32643. But that’s wrong, the data in OSM in general and the data coming from Overpass are in EPSG:4326.
+  
+    Also how did you come up with EPSG:32643? That’s for the strip between 72°E and 78°E, which is also mentioned in the projection info that you printed. Check out https://epsg.io/32643.
+  
+    In the Overpass query you could use out center instead of out geom. The output will then contain the centroid point coordinate also for ways and relations and you can skip the whole part about picking the first coordinate of the geometry.
+  
+
+    or explore why certain datapoints are missing
+  
+
+    My first thought was that the tagging is probably incomplete in OSM.
+  
+""government""=""healthcare"" is quite a narrow query and this tag may not be present on all health offices.
+  
+    With this query you will find some more that are called “Gesundheitsamt” but not tagged government=healthcare:
+  
+[out:json][timeout:359];
+(
+    area[name=""Deutschland""];
+)->.searchArea;
+(
+      nwr(area.searchArea)[""office""=""government""][""government""!=""healthcare""][""name""~""Gesundheitsamt""];
+);
+out center;
+    In the results you can see that for some offices there’s a single point combining several office types. So tagging them as government=healthcare would not be correct. Or they would need to be split into several points.
+  
+"
+health,,"
+
+    Some are due to Inda Health Facilities Import; see also blog post at bottom.
+  
+"
+health,,"
+
+    That's a really helping page!
+  
+    Looking further I think I can use the most general ""healthcare"" tag (we are under the Health Secretary indeed) - at the healthcare page it seems there is a subfield for biology, I think this is the one that would most approach what we do there.
+  
+    And I didn't know these help pages, I'll take a look at them.
+  
+    Thank you very much!
+  
+"
+health,,"
+
+    There is the thing you do and there is the people who organize the things you do. Those are really two very different things. It doesn't matter if you are a private person, a municipality or a ministry - if you offer health care you're under the healthcare=* tag. Now for who operates the services, that is also interesting. You can use the operator tag to give the name of the operator, and operator:type to give a classification of what kind of thing the operator is. Search wiki.openstreetmap.org for these specific keywords for detailed definitions.
+  
+"
+health,,"
+
+
+    What is the ""money track"" from a donation made or a corporate membership payment, until it is put to some good use for the advancement of OSM? Who can influence it?
+  
+
+    OSMF Board spends money, and working groups apply (& get) their budgets they ask for. During the Annual General Meeting, the Treasurer will make a report, showing where the money is coming from and going to.
+  
+    If you personally want to influence this, join the OSM Foundation, and/or join a Working Group, vote in OSMF election, stand for OSMF elections. 🙂
+  
+    There are other ways to financially support OSM without the OSMF. You may be able to donate money to people who develop software directly, you could pay for people to work on the open source tools that power OSM. Or purchase products or services from one of our many commerial users of OSM.
+  
+
+    There's an enormous ecosystem of maps, tools and other derivates that exploit OSM data in different ways. What is your perception of the added value from all these contributions, vs. the perceived fragmentation from the point of view of end-users?
+  
+
+    What you see as “fragmentation” I think is a sign of a health ecosystem of innovation. A goal of OSM is provide free map data for people to use in interesting, and unforseen ways, so when some new person or group makes something new, that means we're achieving our goal. OSM, the large free dataset, allows people to try things they weren't able before. This is a good thing. 🙂
+  
+
+    Newcomers very often conflate ""OSM"" with ""the slippy map at openstreetmap.org and its Nominatim search box"", which leads to frustration and a perception of missing features. What role does the OSM foundation play in this particular situation?
+  
+
+    All we can do is keep trying to communicate and explain things. Helping local chapters, or other organisations or people, to promote OSM, and helping support other OSM communities, means there will be more knowledgeable OSMers out there to talk to people.
+  
+
+    Vector or raster tiles? :-)
+  
+
+    Why not both? 😉 I've set up servers which render vector tiles on the server to send raster tiles to the server. It could allow one to change the map style easily. But the tech is a mess & rubbish alas. I think it's important that there is still a way to get plain rasters as a Z/X/Y.png
+  
+"
+health,,"
+
+    ""not used any more"" != ""not present"".
+  
+    Here in the UK it was only made illegal to sell and fit it in 1999, shortly after EU legislation banned chrysotile. (Other types banned in 1985)  It lasts a long long time so there's a lot of it around and it will be for a long time.
+  
+    It's worth noting if you're able to as its presence affects things like property value, fire regulations, safe access, workman's decisions as well as health. Whilst it's inert unless disturbed, the downwind risk to health and the environment during a property fire involving asbestos is substantial.
+  
+"
+health,,"
+
+    All they did was coalesce all hospital/clinic POIs with a 1km granularity (only able to answer the yes/no question ""is there a health facility in this km2 ?"").
+  
+    Just aggregating data from multiple sources does not create a derived db (thankfully). You need to actually mix the data (like getting the phone number from one db, the opening times from another, and merging that into a single object), and I think also need to publish the db somehow (private experiment and public howtos don't apply).
+  
+"
+health,,"
+
+    Zoonoses are clearly a public health problem (we have a small local difficulty with one called Covid-19 at the moment), so this is a specialised public health function. I agree that healthcare is the right key, and we also know the specialty, but the range of functions makes it harder to categorise as it comprises both surveillance and interventions.
+  
+    As an aside I have for some time wondered if we need a fairly generic healthcare=facility and use healthcare:facility:* style tags for these hard-to-categorise examples (see social_facility:* for the principle).
+  
+"
+health,,"
+
+    > There is no simple tool that anyone could use to map all the schools in a country for example
+  
+    There are developments on this idea. For example, for health facilities, there is https://healthsites.io/. Been getting a lot of engagement lately due to COVID-19 response usage of OSM data.
+  
+"
+health,,"
+
+    Is this food hygiene rating based on periodic inspections? If so how often are inspections done? Seems like this might be dynamic information that is not suitable for OSM.
+  
+    In my area the county health inspection checks all places that prepare/serve food on periodically. I think about once a month and maybe more often. So the status/rating for sn establishment could potentially change pretty often too.
+  
+"
+health,,"
+
+    Well, actually there are ways to do it:
+  
+
+
+    ohsome (openstreetmap history data analytics platform)It is basically an API providing statistical aggregates and data extractionohsome.org # ohsome homepagehttps://api.ohsome.org/v1/swagger-ui.html?urls.primaryName=Data%20Extraction# swagger interfaceI've created the respective request for you, which will download all OSM objects with the key value amenity=hospital. I chose centroid instead of the actual geometry, this means we get all hospital object as point features. Normally amenities in OSM get first mapped as POIs and later improved with the poylgon geometry of the building footprint. If you need the building geometries, you can change this in the ohsome api parameters. Also I did not use an actual bounday of africa, however you can do this via the bpolys parameter. I reuqested a bbox, which includes some countries in the middle east, but you can erase them with a clip or erase processhttps://api.ohsome.org/v1/elements/centroid?bboxes=-26%2C-39%2C54%2C38&keys=amenity&properties=tags&showMetadata=false&time=2020-06-29&values=hospital
+
+
+
+https://healthsites.io/Shapefile download per country, API
+  
+
+
+https://export.hotosm.org/de/v3/Overpass API based export tool; per country and bbox/poly area possible; pre defined export schemes like health
+  
+
+
+    If you're curious about OSM data, take a look at the tutorials here: https://disastermappers.wordpress.com/mapping/
+
+"
+health,,"
+
+    I'd represent the distance by using a iso area map- , the colored streets are a littler harder to read.https://root676.github.io/IsoAreaAlgs.htmlcool use for it though! be interesting to identify food deserts in different cites. (bonus points if you can get some health data wedged in!)
+  
+"
+health,,"
+
+    Some mappers like to map a great deal of detail, and one of the great things about OSM is that it accommodates editors interests, whether that's focusing on building geometry details, bike racks, or health clinics. I haven't gone into that level of building detail myself, but I think your answer will be be to map the building as a three dimensional object, with the building=* tag on the footprint, and the roof, with overhang on a building: part=* outline, with additional tags for roof shape, and other details. It'd be worth checking out [the wiki page on 3D buildings] (https://wiki.openstreetmap.org/wiki/Simple_3D_buildings)
+  
+"
+health,,"
+
+    Society hasn’t even scratched the surface of what citizen science is capable of. Not 1 university campus has had their litter mapped yet. When this geospatial renaissance really takes off, we will begin to produce global datasets in minutes and this will become the new normal. I would love if people concerned about the environment thought this was the kind of thing that was important but sadly you have proven my point. Very few people appreciate it yet. I will be the first to admit that the complete lack of support to develop citizen science and the impact of 150m tonnes of plastic rotting in the ocean has had a profound impact on my mental health. Out of all of the communities in the world, I thought OSM would be the one who would be delighted to take a little bit of an interest and offer to help a little bit but I guess there needs to be a lot more work done on educating society about the value of crowdsourcing data on plastic pollution than I originally anticipated.
+  
+"
+health,,"
+
+    hello dear friend - many thanks for steppin up the plate with this interesting question
+  
+    well - if you have a closer look at the dataset:
+  
+https://taginfo.openstreetmap.org/keys/amenity#values
+
+https://taginfo.openstreetmap.org/tags/amenity=hospital
+
+Übersicht:
+
+    [CODE]Typ:
+  
+    Anzahl Objekte:
+  
+    [Alle] Alle 181012                               0.00%
+  
+    101736                                               0.06%
+  
+    [Way] Way 76 022                              0.01%
+  
+    [Relation] Relation 3 254                    0.04%
+  
+    [/CODE]
+  
+    and yes : see also  healthsites.io with alltogehter 839122 records - see the many infos the helathsites is taking care ...
+  
+    Dentist
+  
+    Pharmacy
+  
+    Hospital
+  
+    etc. etx.
+  
+839122 healthsites listed -  vgl.: https://healthsites.io/map
+
+    sieht man genau hin dann ergibt sich folgendes:
+  
+Deutschland -  2819 Kliniken  2819 records.
+  
+
+    -conclusio: i do not need no  PostgreSQL-DB.
+  
+    see the Data of  healthsites.io komme : vgl https://healthsites.io/map
+
+
+    hier noch ein paar interessante Details zu dem healthsites.io-Projket:  http://www.healthsites.io –
+  
+    [QUOTE]
+  
+    [QUOTE]The data will flow both ways from Healthsites.io to OpenStreetMap, and from OpenStreetMap to Healthsites.io. On the sign up to the Healthsites.io page, users will register using OAuth against the OSM authentication provider. Each data change (create/update/delete) to a health facility on the Healthsite.io platform will be written directly to the OSM database using the OSM API, with the OSM credentials associated with the logged in user on Healthsites.io.
+  
+    Changes to health facility data made outside of the Healthsites.io platform, and directly to OSM are replicated back in near-real time to a Healthsites.io mirror of all health facility data found in OSM. This is achieved using docker-osm, developed by Kartoza which takes the high frequency diffs produced on OSM and applies them to a PostgreSQL / PostGIS database hosted on Heathsites.io. Changes made locally on healthsites.io are first pushed to OSM via the OSM API and then replicated back to our docker-osm instance using the same mechanism described above.
+  
+    Our aim with this architectural approach is to make OSM the main storage location of all the health facility data available on Healthsites.io and at the same time facilitate large queries, extracts and general innovation around the body of OSM health facility data, whilst having minimal impact and load on the services offered by OSM. The diagram below illustrates the high level architecture as pertains to interactions between OSM and Healthsites.io.
+  
+Data Model: The OSM data model put together for Healthsites was initially based off of several data models used in various HOT projects across South America, Africa and Southeast Asia. The initial list of tags was then compared to the data model that Healthsites.io was already using to ensure that the same attributes were still being captured, but also offered some suggestions for additional key information that should be captured for health facilities. This was based on the numerous collaborations with HOT project partners over the years and their data needs.
+  
+    The overall idea is to use existing OSM tags where possible and only propose new tags where necessary. A lot of research went into the development of the Healthsites OSM data model, including the review of existing HOT data models and OSM data models available on the OSM wiki. Verification of the tags usage through the OSM wiki, Tag Info and Tag History, with further analysis on tags using OSMFilter for certain areas of interest, helped identify values generally applied in a local area.[/QUOTE]
+  
+"
+health,,"
+
+    The specific issue in the UK is that primary practitioners are gatekeepers to the the rest of the health system (although I'm not sure about private hair transplants) and amenity=doctors will generally mean a primary practice, not a specialist practice. Adding amenity=doctors and healthcare:speciality=trichology degrades the general meaning of amenity=doctors, so that we'd really have to add healthcare:speciality=general_practice to 99% of the existing nodes. (This is a not uncommon problem with tagging).
+  
+    Obviously healthcare systems differ, and in this respect the UK is different from many other European countries where one can access specialist directly (for instance a doctor I know in Poland specialises in General Practice, and Pediatrics.
+  
+    I note that the key is incorrect: the standard term used in healthcare (at least in US and UK) is specialty not speciality (see NHS Data Dictionary).
+  
+"
