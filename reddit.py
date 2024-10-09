@@ -17,7 +17,7 @@ SUBREDDIT_NAME = "cmu"
 header_written = False
 
 def main():
-    keywords = pd.read_csv("input_disability.csv")
+    keywords = pd.read_csv("input_shortcuts.csv")
     queries_raw = list(keywords["keywords"])
     queries = [keyword.lower() for keyword in queries_raw]
     print(queries)
